@@ -1,26 +1,27 @@
 var express = require("express");
 var burger = require("../models/burger");
 
-var router = express.router();
+var router = express.Router();
 
 //select all
 router.get("/", (req, res) => {
     burger.all(data => {
-        res.render("index", { burger: data });
+        res.render("index", { burgers: data });
     });
 });
 
 //creates new burger
-router.post("/api/burger", (req, res) => {
+router.post("/api/burgers", (req, res) => {
     burger.create(req.body.name, result => {
-        res.json({ id: result.insertedId });
+        res.redirect("/");
     });
 });
 
 //devour an burger
-router.put("/api/burger", (req, res) => {
+router.put("/api/burgers", (req, res) => {
     burger.devour(req.body.id, result => {
         if (result.changedRows === 0) {
+            console.log(req.body.id);
             res.status(404).end();
         }
         else {
@@ -28,4 +29,6 @@ router.put("/api/burger", (req, res) => {
         }
     });
 });
+
+module.exports = router;
 
