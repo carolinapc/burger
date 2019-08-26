@@ -1,4 +1,4 @@
-var orm = require("orm");
+var orm = require("../config/orm");
 const TABLE = "burgers";
 
 var burger = {
