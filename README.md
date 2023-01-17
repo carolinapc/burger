@@ -1,4 +1,4 @@
-# burger
+# Burger
 
 Create as burgers as you want and devour it!
 
